@@ -1,164 +1,180 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { SiPython, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiTailwindcss, SiPytorch, SiTensorflow, SiScikitlearn, SiPandas, SiGit, SiGithub } from 'react-icons/si';
 
 
 // --- ICONS ---
-const CodeIcon = (props) => (
+const CodeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
 );
-const GithubIcon = (props) => (
+const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M12 2a10 10 0 0 0-10 10c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.68 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.39.2 2.43.1 2.68.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85v2.72c0 .27.16.58.67.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
 );
-const LinkedinIcon = (props) => (
+const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
         <rect x="2" y="9" width="4" height="12"></rect>
         <circle cx="4" cy="4" r="2"></circle>
     </svg>
 );
-const WhatsappIcon = (props) => (
+const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
     </svg>
 );
-const DatabaseIcon = (props) => (
+const DatabaseIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
 );
-const BrushIcon = (props) => (
+const BrushIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"></path><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"></path></svg>
 );
-const ExternalLinkIcon = (props) => (
+const ExternalLinkIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
 );
-const MenuIcon = (props) => (
+const MenuIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
 );
-const XIcon = (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><line x1="18" x2="6" y1="6" y2="18" /><line x1="6" x2="18" y1="6" y2="18" /></svg>
-);
-const ChevronDownIcon = (props) => (
+const ChevronDownIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><polyline points="6 9 12 15 18 9"></polyline></svg>
 );
 
+// --- Type Definitions for Animation ---
+interface Node {
+  x: number;
+  y: number;
+  radius: number;
+  layer: number;
+}
+interface Edge {
+  from: Node;
+  to: Node;
+}
+interface Pulse extends Edge {
+  progress: number;
+  speed: number;
+}
+
 // --- Neural Network Animation Component ---
 const NeuralNetworkAnimation = () => {
-  const canvasRef = useRef(null);
-  const mouse = useRef({ x: undefined, y: undefined, radius: 150 });
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const mouse = useRef({ x: 0, y: 0, radius: 150 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        let animationFrameId: number;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init(); // Re-initialize on resize
-    };
-    
-    let nodes = [];
-    let edges = [];
-    let pulses = [];
+        const resizeCanvas = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          init();
+        };
+        
+        let nodes: Node[] = [];
+        let edges: Edge[] = [];
+        let pulses: Pulse[] = [];
 
-    const init = () => {
-        nodes = [];
-        edges = [];
-        pulses = [];
-        const layers = window.innerWidth < 768 ? [3, 4, 3] : [4, 5, 5, 3]; // Simpler network for mobile
-        const layerSpacing = canvas.width / (layers.length + 1);
+        const init = () => {
+            nodes = [];
+            edges = [];
+            pulses = [];
+            const layers = window.innerWidth < 768 ? [3, 4, 3] : [4, 5, 5, 3];
+            const layerSpacing = canvas.width / (layers.length + 1);
 
-        for (let i = 0; i < layers.length; i++) {
-            const numNodes = layers[i];
-            const nodeSpacing = canvas.height / (numNodes + 1);
-            for (let j = 0; j < numNodes; j++) {
-                nodes.push({
-                    x: layerSpacing * (i + 1),
-                    y: nodeSpacing * (j + 1),
-                    radius: 6,
-                    layer: i
-                });
-            }
-        }
-
-        for (let i = 0; i < nodes.length; i++) {
-            if (nodes[i].layer < layers.length - 1) {
-                const nextLayerNodes = nodes.filter(n => n.layer === nodes[i].layer + 1);
-                for (let j = 0; j < nextLayerNodes.length; j++) {
-                    edges.push({ from: nodes[i], to: nextLayerNodes[j] });
+            for (let i = 0; i < layers.length; i++) {
+                const numNodes = layers[i];
+                const nodeSpacing = canvas.height / (numNodes + 1);
+                for (let j = 0; j < numNodes; j++) {
+                    nodes.push({
+                        x: layerSpacing * (i + 1),
+                        y: nodeSpacing * (j + 1),
+                        radius: 6,
+                        layer: i
+                    });
                 }
             }
-        }
-    };
 
-    const handleMouseMove = (event) => {
-      mouse.current.x = event.clientX;
-      mouse.current.y = event.clientY;
-    };
+            for (let i = 0; i < nodes.length; i++) {
+                if (nodes[i].layer < layers.length - 1) {
+                    const nextLayerNodes = nodes.filter(n => n.layer === nodes[i].layer + 1);
+                    for (let j = 0; j < nextLayerNodes.length; j++) {
+                        edges.push({ from: nodes[i], to: nextLayerNodes[j] });
+                    }
+                }
+            }
+        };
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const handleMouseMove = (event: MouseEvent) => {
+          mouse.current.x = event.clientX;
+          mouse.current.y = event.clientY;
+        };
 
-      if (Math.random() < 0.04 && pulses.length < 25) {
-        const edge = edges[Math.floor(Math.random() * edges.length)];
-        pulses.push({ ...edge, progress: 0, speed: 0.01 + Math.random() * 0.01 });
+        const animate = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          if (Math.random() < 0.04 && pulses.length < 25) {
+            const edge = edges[Math.floor(Math.random() * edges.length)];
+            pulses.push({ ...edge, progress: 0, speed: 0.01 + Math.random() * 0.01 });
+          }
+
+          for (let i = pulses.length - 1; i >= 0; i--) {
+            const p = pulses[i];
+            p.progress += p.speed;
+            if (p.progress >= 1) {
+              pulses.splice(i, 1);
+            } else {
+              const x = p.from.x + (p.to.x - p.from.x) * p.progress;
+              const y = p.from.y + (p.to.y - p.from.y) * p.progress;
+              ctx.beginPath();
+              ctx.arc(x, y, 3, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(56, 189, 248, 0.8)';
+              ctx.fill();
+            }
+          }
+
+          edges.forEach(edge => {
+            const dist = Math.hypot(mouse.current.x - edge.from.x, mouse.current.y - edge.from.y);
+            const opacity = Math.max(0, 1 - dist / mouse.current.radius);
+            ctx.beginPath();
+            ctx.moveTo(edge.from.x, edge.from.y);
+            ctx.lineTo(edge.to.x, edge.to.y);
+            ctx.strokeStyle = `rgba(100, 116, 139, ${0.1 + opacity * 0.3})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          });
+
+          nodes.forEach(node => {
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            
+            const dist = Math.hypot(mouse.current.x - node.x, mouse.current.y - node.y);
+            const opacity = Math.max(0, 1 - dist / mouse.current.radius);
+
+            ctx.fillStyle = `rgba(56, 189, 248, ${0.3 + opacity * 0.7})`;
+            ctx.fill();
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.5 + opacity * 0.5})`;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          });
+
+          animationFrameId = requestAnimationFrame(animate);
+        };
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('mousemove', handleMouseMove);
+        animate();
+
+        return () => {
+          cancelAnimationFrame(animationFrameId);
+          window.removeEventListener('resize', resizeCanvas);
+          window.removeEventListener('mousemove', handleMouseMove);
+        };
       }
-
-      for (let i = pulses.length - 1; i >= 0; i--) {
-        const p = pulses[i];
-        p.progress += p.speed;
-        if (p.progress >= 1) {
-          pulses.splice(i, 1);
-        } else {
-          const x = p.from.x + (p.to.x - p.from.x) * p.progress;
-          const y = p.from.y + (p.to.y - p.from.y) * p.progress;
-          ctx.beginPath();
-          ctx.arc(x, y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(56, 189, 248, 0.8)';
-          ctx.fill();
-        }
-      }
-
-      edges.forEach(edge => {
-        const dist = Math.hypot(mouse.current.x - edge.from.x, mouse.current.y - edge.from.y);
-        const opacity = Math.max(0, 1 - dist / mouse.current.radius);
-        ctx.beginPath();
-        ctx.moveTo(edge.from.x, edge.from.y);
-        ctx.lineTo(edge.to.x, edge.to.y);
-        ctx.strokeStyle = `rgba(100, 116, 139, ${0.1 + opacity * 0.3})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      });
-
-      nodes.forEach(node => {
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        
-        const dist = Math.hypot(mouse.current.x - node.x, mouse.current.y - node.y);
-        const opacity = Math.max(0, 1 - dist / mouse.current.radius);
-
-        ctx.fillStyle = `rgba(56, 189, 248, ${0.3 + opacity * 0.7})`;
-        ctx.fill();
-        ctx.strokeStyle = `rgba(56, 189, 248, ${0.5 + opacity * 0.5})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      });
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', handleMouseMove);
-    animate();
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    }
   }, []);
 
   return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0 opacity-40" />;
@@ -185,7 +201,7 @@ export default function App() {
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let timeoutId;
+    let timeoutId: NodeJS.Timeout;
 
     function type() {
       const currentRole = roles[roleIndex];
@@ -203,26 +219,27 @@ export default function App() {
   const filteredProjects = projects.filter(project => activeFilter === 'All' || project.tags.includes(activeFilter));
 
   // --- ANIMATION VARIANTS ---
-  const fadeIn = {
+  const fadeIn: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.8 } },
   };
   
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-  const menuVariants = {
+  const menuVariants: Variants = {
     hidden: { opacity: 0, scale: 0.95, y: -10 },
     visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
   };
 
   // --- SMOOTH SCROLL HANDLER ---
-  const handleNavClick = (e) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setIsMenuOpen(false); // Close menu on link click
-    const targetId = e.currentTarget.getAttribute('href').substring(1);
+    const targetId = e.currentTarget.getAttribute('href')?.substring(1);
+    if (!targetId) return;
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({
