@@ -1,17 +1,16 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
-// Import the motion component from Framer Motion
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-// Import icons from the react-icons library
 import { SiPython, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiTailwindcss, SiPytorch, SiTensorflow, SiScikitlearn, SiPandas, SiGit, SiGithub } from 'react-icons/si';
 
 
 // --- ICONS ---
 const CodeIcon = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><polyline points="20 18 22 12 20 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
 );
 const GithubIcon = (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M12 2a10 10 0 0 0-10 10c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.20-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.68 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.39.2 2.43.1 2.68.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85v2.72c0 .27.20.58.67.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M12 2a10 10 0 0 0-10 10c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.68 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.39.2 2.43.1 2.68.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85v2.72c0 .27.16.58.67.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
 );
 const LinkedinIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -41,7 +40,7 @@ const XIcon = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><line x1="18" x2="6" y1="6" y2="18" /><line x1="6" x2="18" y1="6" y2="18" /></svg>
 );
 const ChevronDownIcon = (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><polyline points="6 9 12 15 18 9"></polyline></svg>
 );
 
 // --- Neural Network Animation Component ---
@@ -128,7 +127,7 @@ const NeuralNetworkAnimation = () => {
         ctx.beginPath();
         ctx.moveTo(edge.from.x, edge.from.y);
         ctx.lineTo(edge.to.x, edge.to.y);
-        ctx.strokeStyle = `rgba(100, 116, 139, ${0.2 + opacity * 0.6})`;
+        ctx.strokeStyle = `rgba(100, 116, 139, ${0.1 + opacity * 0.3})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -140,9 +139,9 @@ const NeuralNetworkAnimation = () => {
         const dist = Math.hypot(mouse.current.x - node.x, mouse.current.y - node.y);
         const opacity = Math.max(0, 1 - dist / mouse.current.radius);
 
-        ctx.fillStyle = `rgba(56, 189, 248, ${0.5 + opacity * 0.8})`;
+        ctx.fillStyle = `rgba(56, 189, 248, ${0.3 + opacity * 0.7})`;
         ctx.fill();
-        ctx.strokeStyle = `rgba(56, 189, 248, ${0.8 + opacity * 0.7})`;
+        ctx.strokeStyle = `rgba(56, 189, 248, ${0.5 + opacity * 0.5})`;
         ctx.lineWidth = 2;
         ctx.stroke();
       });
@@ -233,14 +232,6 @@ export default function App() {
     }
   };
 
-  const floatingIcons = [
-    { Icon: SiReact, className: 'text-cyan-400', top: '15%', left: '10%', size: 'w-20 h-20', duration: 5 },
-    { Icon: SiPython, className: 'text-yellow-400', top: '25%', left: '80%', size: 'w-20 h-20', duration: 6 },
-    { Icon: SiNextdotjs, className: 'text-white', top: '70%', left: '15%', size: 'w-20 h-20', duration: 7 },
-    { Icon: SiTensorflow, className: 'text-orange-500', top: '80%', left: '75%', size: 'w-20 h-20', duration: 5.5 },
-    { Icon: SiTailwindcss, className: 'text-teal-400', top: '50%', left: '5%', size: 'w-20 h-20', duration: 6.5 },
-  ];
-
   return (
     <div className="bg-gray-900 text-gray-200 font-sans antialiased">
       <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
@@ -316,7 +307,7 @@ export default function App() {
                   <div className="relative w-64 h-64 md:w-80 md:h-80">
                     <motion.img 
                       src="/profile.JPG" 
-                      alt="Your Name" 
+                      alt="Aziz's Profile Picture" 
                       className="relative z-10 w-full h-full rounded-full shadow-lg"
                       animate={{
                         y: [0, -8, 0],
@@ -335,8 +326,8 @@ export default function App() {
                   </div>
                 </div>
                 <div className="md:w-2/3 text-lg text-gray-300">
-                  <p className="mb-4">Hello! I'm a passionate developer with a dual focus on AI/Data Science and creative front-end development. My journey in tech began with a fascination for how data can tell stories and how code can bring those stories to life.</p>
-                  <p className="mb-4">I thrive at the intersection of logic and design, building intelligent systems with robust back-ends and crafting beautiful, intuitive user interfaces. Whether I'm training a neural network or perfecting a pixel-perfect animation, I'm driven by a desire to solve complex problems and create meaningful digital experiences.</p>
+                  <p className="mb-4">Hello! I&apos;m a passionate developer with a dual focus on AI/Data Science and creative front-end development. My journey in tech began with a fascination for how data can tell stories and how code can bring those stories to life.</p>
+                  <p className="mb-4">I thrive at the intersection of logic and design, building intelligent systems with robust back-ends and crafting beautiful, intuitive user interfaces. Whether I&apos;m training a neural network or perfecting a pixel-perfect animation, I&apos;m driven by a desire to solve complex problems and create meaningful digital experiences.</p>
                 </div>
               </motion.div>
             </div>
@@ -443,9 +434,9 @@ export default function App() {
           {/* Contact Section */}
           <section id="contact" className="py-20 md:py-32 bg-gray-800 bg-opacity-50 overflow-hidden scroll-mt-20">
             <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="container mx-auto px-6 max-w-3xl text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Connect</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Let&apos;s Connect</h2>
               <p className="text-gray-300 mb-8">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team. Feel free to reach out to me.
+                I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team. Feel free to reach out to me.
               </p>
               <div className="flex justify-center items-center gap-8">
                 <a href="https://github.com/Poor1ST" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
