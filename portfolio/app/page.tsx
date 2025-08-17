@@ -190,11 +190,13 @@ export default function App() {
   
   // --- MOCK DATA with 'role' added ---
   const projects = [
-    { id: 1, title: "Neural Style Transfer", role: "Lead AI Developer", description: "An AI-powered web app that applies the style of one image to another using a convolutional neural network (CNN).", image: "https://placehold.co/600x400/1a202c/718096?text=AI+Project", tags: ["AI/ML"], liveUrl: "#", sourceUrl: "#", tech: ["PyTorch", "Flask", "React"]},
-    { id: 2, title: "Customer Churn Prediction", role: "Data Scientist", description: "A data science project to predict customer churn using machine learning models, with interactive visualizations.", image: "https://placehold.co/600x400/1a202c/718096?text=Data+Science", tags: ["Data Science"], liveUrl: "#", sourceUrl: "#", tech: ["Scikit-learn", "Pandas", "Plotly"]},
-    { id: 3, title: "Interactive Portfolio Website", role: "Full-Stack Developer", description: "This very portfolio, built with Next.js and Framer Motion to create a dynamic and engaging user experience.", image: "https://placehold.co/600x400/1a202c/718096?text=Frontend", tags: ["Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Tailwind CSS", "Framer Motion"]},
-    { id: 4, title: "Sentiment Analysis API", role: "Machine Learning Engineer", description: "Developed a REST API that classifies text sentiment as positive, negative, or neutral using a fine-tuned BERT model.", image: "https://placehold.co/600x400/1a202c/718096?text=AI/ML+API", tags: ["AI/ML", "Data Science"], liveUrl: "#", sourceUrl: "#", tech: ["Hugging Face", "FastAPI", "Docker"]},
-    { id: 5, title: "E-commerce Dashboard", role: "Frontend Developer", description: "A responsive front-end for an e-commerce analytics dashboard, featuring complex data visualizations and filtering.", image: "https://placehold.co/600x400/1a202c/718096?text=Frontend+App", tags: ["Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["React", "D3.js", "TypeScript"]}
+    { id: 1, title: "Stock Price Prediction Model", role: ["Data Analysis", "Model Optimization"], description: "This project involved developing and evaluating a hybrid deep learning model combining a TCN and BiLSTM to improve the accuracy of stock price predictions by integrating historical price data with technical and fundamental indicators.", image: "/stock_price_prediction.png", tags: ["AI/ML", "Data Science"], liveUrl: "#", sourceUrl: "https://github.com/Poor1ST/Stock-Price-Prediction-TCN-BiLSTM", tech: ["TensorFlow", "Yfinance", "Pandas", "Numpy", "Matplotlib"]},
+    { id: 2, title: "Interactive Portfolio Website", role: ["Front End Developer"], description: "This very portfolio, built with Next.js and Framer Motion to create a dynamic and engaging user experience.", image: "/portfolio.png", tags: ["Frontend"], liveUrl: "https://nur-aziz-portfolio.vercel.app/", sourceUrl: "https://github.com/Poor1ST/portfolio", tech: ["Next.js", "Tailwind CSS", "Framer Motion"]},
+    { id: 3, title: "Depression Diagnosis", role: ["Algorithm Implementation","Front End Developer"], description: "A web that uses an expert system to diagnose depression based on user input and certainty factor.", image: "/depression_diagnosis.png", tags: ["AI/ML", "Data Science","Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Expert System"]},
+    { id: 4, title: "Geo Logbook", role: ["Front End Developer"], description: "Developed a REST API that classifies text sentiment as positive, negative, or neutral using a fine-tuned BERT model.", image: "/geologbook.png", tags: ["Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Jotai"]},
+    { id: 5, title: "Reality to Comic Style Model", role: ["AI Developer"], description: "A responsive front-end for an e-commerce analytics dashboard, featuring complex data visualizations and filtering.", image: "/face_to_comic.png", tags: ["AI/ML"], liveUrl: "#", sourceUrl: "#", tech: ["TensorFlow", "Sklearn", "Matplotlib", "Streamlit"]},
+    { id: 6, title: "Sokin", role: ["Frontend Developer"], description: "A responsive front-end for an e-commerce analytics dashboard, featuring complex data visualizations and filtering.", image: "/Sokin.png", tags: ["Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Tailwind CSS",]},
+    { id: 7, title: "Automatic Snake Game", role: ["Data Preprocessing", "Hyperparameter Tuning"], description: "A responsive front-end for an e-commerce analytics dashboard, featuring complex data visualizations and filtering.", image: "/snake_game.png", tags: ["AI/ML", "Data Science"], liveUrl: "#", sourceUrl: "#", tech: ["Python", "Genetic Algorithm", "Tkinter"]}
   ];
 
   useEffect(() => {
@@ -343,8 +345,8 @@ export default function App() {
                   </div>
                 </div>
                 <div className="md:w-2/3 text-lg text-gray-300">
-                  <p className="mb-4">Hello! I&apos;m a passionate developer with a dual focus on AI/Data Science and creative front-end development. My journey in tech began with a fascination for how data can tell stories and how code can bring those stories to life.</p>
-                  <p className="mb-4">I thrive at the intersection of logic and design, building intelligent systems with robust back-ends and crafting beautiful, intuitive user interfaces. Whether I&apos;m training a neural network or perfecting a pixel-perfect animation, I&apos;m driven by a desire to solve complex problems and create meaningful digital experiences.</p>
+                  <p className="mb-4">Hello, I&apos;m Aziz. I specialize in building and deploying end-to-end AI solutions. My core expertise lies in developing machine learning models and neural networks that solve complex, real-world problems.</p>
+                  <p className="mb-4">I have a proven track record of handling the entire AI lifecycle, from data preprocessing and feature engineering to model training and validation. What sets me apart is my ability to bridge the gap between complex algorithms and the end-user. With strong skills in creative front-end development, I don&apos;t just build models; I build intelligent, interactive applications that deliver tangible results and exceptional user experiences.</p>
                 </div>
               </motion.div>
             </div>
@@ -415,25 +417,41 @@ export default function App() {
                         viewport={{ once: true }}
                         transition={{ delay: (i % 3) * 0.1 }}
                         layout
-                        className="group bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/20"
+                        className="group border border-gray-700 bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/20"
                       >
                         <div className="relative">
                           <img src={project.image} alt={project.title} className="w-full h-56 object-cover" />
-                          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="flex space-x-4">
-                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="bg-cyan-500 text-gray-900 py-2 px-4 rounded-full font-semibold flex items-center gap-2 hover:bg-cyan-400 transition-transform transform hover:scale-105"><ExternalLinkIcon className="w-5 h-5"/> Live</a>
-                                <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="bg-gray-700 py-2 px-4 rounded-full font-semibold flex items-center gap-2 hover:bg-gray-600 transition-transform transform hover:scale-105"><GithubIcon className="w-5 h-5"/> Source</a>
+                                {project.liveUrl && project.liveUrl !== "#" ? (
+                                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="bg-cyan-500 text-gray-900 py-2 px-4 rounded-full font-semibold flex items-center gap-2 hover:bg-cyan-400 transition-transform transform hover:scale-105">
+                                    <ExternalLinkIcon className="w-5 h-5"/> Live
+                                  </a>
+                                ) : (
+                                  <button disabled className="bg-gray-600 text-gray-400 py-2 px-4 rounded-full font-semibold flex items-center gap-2 cursor-not-allowed">
+                                    <ExternalLinkIcon className="w-5 h-5"/> Live
+                                  </button>
+                                )}
+                                {project.sourceUrl && project.sourceUrl !== "#" ? (
+                                  <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="bg-gray-700 py-2 px-4 rounded-full font-semibold flex items-center gap-2 hover:bg-gray-600 transition-transform transform hover:scale-105">
+                                    <GithubIcon className="w-5 h-5"/> Source
+                                  </a>
+                                ) : (
+                                  <button disabled className="bg-gray-600 text-gray-400 py-2 px-4 rounded-full font-semibold flex items-center gap-2 cursor-not-allowed">
+                                    <GithubIcon className="w-5 h-5"/> Source
+                                  </button>
+                                )}
                             </div>
                           </div>
                         </div>
                         <div className="p-6">
                           <h3 className="text-xl font-bold mb-2 text-cyan-400">{project.title}</h3>
                           
-                          <div className="relative h-20 mb-4">
+                          <div className="relative h-44 mb-4">
                             <p className="absolute inset-0 text-gray-400 transition-opacity duration-300 group-hover:opacity-0">{project.description}</p>
                             <div className="absolute inset-0 flex flex-col justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                               <p className="font-bold text-gray-300 text-sm">ROLE</p>
-                              <p className="text-cyan-400 font-semibold">{project.role}</p>
+                              {project.role.map(role => (<p key={role} className="text-cyan-400 font-semibold">{role}</p>))}
                             </div>
                           </div>
                           
