@@ -191,12 +191,12 @@ export default function App() {
   // --- MOCK DATA with 'role' added ---
   const projects = [
     { id: 1, title: "Stock Price Prediction Model", role: ["Data Analysis", "Model Optimization"], description: "This project involved developing and evaluating a hybrid deep learning model combining a TCN and BiLSTM to improve the accuracy of stock price predictions by integrating historical price data with technical and fundamental indicators.", image: "/stock_price_prediction.png", tags: ["AI/ML", "Data Science"], liveUrl: "#", sourceUrl: "https://github.com/Poor1ST/Stock-Price-Prediction-TCN-BiLSTM", tech: ["TensorFlow", "Yfinance", "Pandas", "Numpy", "Matplotlib"]},
-    { id: 2, title: "Interactive Portfolio Website", role: ["Front End Developer"], description: "This very portfolio, built with Next.js and Framer Motion to create a dynamic and engaging user experience.", image: "/portfolio.png", tags: ["Frontend"], liveUrl: "https://nur-aziz-portfolio.vercel.app/", sourceUrl: "https://github.com/Poor1ST/portfolio", tech: ["Next.js", "Tailwind CSS", "Framer Motion"]},
+    { id: 2, title: "Interactive Portfolio Website", role: ["Front End Developer"], description: "This very portfolio, built with Next.js and Framer Motion to create a dynamic and engaging user experience.", image: "/Portfolio.png", tags: ["Frontend"], liveUrl: "https://nur-aziz-portfolio.vercel.app/", sourceUrl: "https://github.com/Poor1ST/portfolio", tech: ["Next.js", "Tailwind CSS", "Framer Motion"]},
     { id: 3, title: "Depression Diagnosis", role: ["Algorithm Implementation","Front End Developer"], description: "A web that uses an expert system to diagnose depression based on user input and certainty factor.", image: "/depression_diagnosis.png", tags: ["AI/ML", "Data Science","Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Expert System"]},
-    { id: 4, title: "Geo Logbook", role: ["Front End Developer"], description: "Developed a REST API that classifies text sentiment as positive, negative, or neutral using a fine-tuned BERT model.", image: "/geologbook.png", tags: ["Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Jotai"]},
-    { id: 5, title: "Reality to Comic Style Model", role: ["AI Developer"], description: "A responsive front-end for an e-commerce analytics dashboard, featuring complex data visualizations and filtering.", image: "/face_to_comic.png", tags: ["AI/ML"], liveUrl: "#", sourceUrl: "#", tech: ["TensorFlow", "Sklearn", "Matplotlib", "Streamlit"]},
-    { id: 6, title: "Sokin", role: ["Frontend Developer"], description: "A responsive front-end for an e-commerce analytics dashboard, featuring complex data visualizations and filtering.", image: "/Sokin.png", tags: ["Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Tailwind CSS",]},
-    { id: 7, title: "Automatic Snake Game", role: ["Data Preprocessing", "Hyperparameter Tuning"], description: "A responsive front-end for an e-commerce analytics dashboard, featuring complex data visualizations and filtering.", image: "/snake_game.png", tags: ["AI/ML", "Data Science"], liveUrl: "#", sourceUrl: "#", tech: ["Python", "Genetic Algorithm", "Tkinter"]}
+    { id: 4, title: "Geo Logbook", role: ["Front End Developer"], description: "As the Front-End Developer for Geo Logbook, I developed an interactive and customizable travel journal web application by translating six Figma design pages into a fully functional user interface using Next.js, TypeScript, and Tailwind CSS.", image: "/geologbook.png", tags: ["Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Jotai"]},
+    { id: 5, title: "Reality to Comic Style Model", role: ["AI Developer"], description: "This project involved implementing and training a CycleGAN model for an image-to-image translation task, successfully converting real-world facial photographs into a consistent, stylized comic book art form.", image: "/face_to_comic.png", tags: ["AI/ML"], liveUrl: "#", sourceUrl: "#", tech: ["TensorFlow", "Sklearn", "Matplotlib", "Streamlit"]},
+    { id: 6, title: "Sokin", role: ["Frontend Developer"], description: "As a Front-End Developer on a team of six, I contributed to building Sokin, an e-commerce platform for a food delivery service, using Next.js, TypeScript, and Tailwind CSS.", image: "/Sokin.png", tags: ["Frontend"], liveUrl: "#", sourceUrl: "#", tech: ["Next.js", "Tailwind CSS",]},
+    { id: 7, title: "Automatic Snake Game", role: ["Data Preprocessing", "Hyperparameter Tuning"], description: "In this project with a group of four, I optimized a self-learning Snake game AI by structuring the visual game environment for machine processing and systematically tuning the core Genetic Algorithm's hyperparameters to achieve optimal playing strategies.", image: "/snake_game.png", tags: ["AI/ML", "Data Science"], liveUrl: "#", sourceUrl: "#", tech: ["Python", "Genetic Algorithm", "Tkinter"]}
   ];
 
   useEffect(() => {
@@ -253,7 +253,7 @@ export default function App() {
 
   return (
     <div className="bg-gray-900 text-gray-200 font-sans antialiased">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-50 backdrop-blur-md">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#" className="text-2xl font-bold text-cyan-400">Nur Aziz Tri Indrawan</a>
           {/* Desktop Nav */}
@@ -417,11 +417,12 @@ export default function App() {
                         viewport={{ once: true }}
                         transition={{ delay: (i % 3) * 0.1 }}
                         layout
-                        className="group border border-gray-700 bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/20"
+                        className="group border border-gray-700 bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/20 flex flex-col"
                       >
                         <div className="relative">
+                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src={project.image} alt={project.title} className="w-full h-56 object-cover" />
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute inset-0 bg-opacity-50 hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="flex space-x-4">
                                 {project.liveUrl && project.liveUrl !== "#" ? (
                                   <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="bg-cyan-500 text-gray-900 py-2 px-4 rounded-full font-semibold flex items-center gap-2 hover:bg-cyan-400 transition-transform transform hover:scale-105">
@@ -444,19 +445,40 @@ export default function App() {
                             </div>
                           </div>
                         </div>
-                        <div className="p-6">
+                        <div className="p-6 flex flex-col flex-grow">
                           <h3 className="text-xl font-bold mb-2 text-cyan-400">{project.title}</h3>
                           
-                          <div className="relative h-44 mb-4">
-                            <p className="absolute inset-0 text-gray-400 transition-opacity duration-300 group-hover:opacity-0">{project.description}</p>
-                            <div className="absolute inset-0 flex flex-col justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                              <p className="font-bold text-gray-300 text-sm">ROLE</p>
+                          <div className="relative mb-4 flex-grow">
+                            <p className="text-gray-400 md:inset-0 md:transition-opacity md:duration-300 md:group-hover:opacity-0">{project.description}</p>
+                            <div className="md:absolute md:inset-0 flex-col justify-center md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100">
+                              <p className="font-bold text-gray-300 text-sm mt-4 md:mt-0">ROLE</p>
                               {project.role.map(role => (<p key={role} className="text-cyan-400 font-semibold">{role}</p>))}
                             </div>
                           </div>
                           
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-2 mt-auto">
                               {project.tech.map(tech => (<span key={tech} className="bg-gray-700 text-cyan-300 text-xs font-mono py-1 px-2 rounded-full">{tech}</span>))}
+                          </div>
+
+                          <div className="mt-4 flex md:hidden space-x-4">
+                            {project.liveUrl && project.liveUrl !== "#" ? (
+                              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="bg-cyan-500 text-gray-900 py-2 px-4 rounded-full font-semibold flex items-center gap-2 text-sm">
+                                <ExternalLinkIcon className="w-4 h-4"/> Live
+                              </a>
+                            ) : (
+                              <button disabled className="bg-gray-600 text-gray-400 py-2 px-4 rounded-full font-semibold flex items-center gap-2 cursor-not-allowed text-sm">
+                                <ExternalLinkIcon className="w-4 h-4"/> Live
+                              </button>
+                            )}
+                            {project.sourceUrl && project.sourceUrl !== "#" ? (
+                              <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="bg-gray-700 py-2 px-4 rounded-full font-semibold flex items-center gap-2 hover:bg-gray-600 text-sm">
+                                <GithubIcon className="w-4 h-4"/> Source
+                              </a>
+                            ) : (
+                              <button disabled className="bg-gray-600 text-gray-400 py-2 px-4 rounded-full font-semibold flex items-center gap-2 cursor-not-allowed text-sm">
+                                <GithubIcon className="w-4 h-4"/> Source
+                              </button>
+                            )}
                           </div>
                         </div>
                       </motion.div>
